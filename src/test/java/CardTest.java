@@ -11,8 +11,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.Keys.*;
 
 class CardTest {
-    private String setDate(long addDays, String pattern) {
-        return LocalDate.now().plusDays(addDays).format(DateTimeFormatter.ofPattern(pattern));
+    private String setDate(String pattern) {
+        return LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern(pattern));
     }
 
     @Test
@@ -21,9 +21,9 @@ class CardTest {
         $("[data-test-id=city] input").setValue("Ставрополь");
         $("[data-test-id=date] input").doubleClick();
         $("[data-test-id=date] input").sendKeys(BACK_SPACE);
-        String date = setDate(3, "dd.MM.yyyy");
+        String date = setDate("dd.MM.yyyy");
         $("[data-test-id=date] input").setValue(date);
-        $("[data-test-id=name] input").setValue("Илья Муром");
+        $("[data-test-id=name] input").setValue("Иван Иванов");
         $("[data-test-id=phone] input").setValue("+79876543210");
         $("[data-test-id=agreement]").click();
         $(".button").click();
